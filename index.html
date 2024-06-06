@@ -1,25 +1,114 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Data Input Form</title>
+  <title>Player Statistics Input Form</title>
   <script>
     async function sendData() {
-      const data = document.getElementById('data').value;
-      const response = await fetch('https://script.google.com/macros/s/AKfycbyg99X7EdyVm6kmooCpCgv9OwlO-b0LgE7kxZAVKGIdLnrqR7h-g20GdE_gKSsfHm957g/exec', {
+      const data = {
+        Players: document.getElementById('players').value,
+        Played: document.getElementById('played').value,
+        Goals: document.getElementById('goals').value,
+        Assists: document.getElementById('assists').value,
+        Shots: document.getElementById('shots').value,
+        ShotAccuracy: document.getElementById('shotAccuracy').value,
+        Passes: document.getElementById('passes').value,
+        PassAttempts: document.getElementById('passAttempts').value,
+        PassAccuracy: document.getElementById('passAccuracy').value,
+        Saves: document.getElementById('saves').value,
+        Conceded: document.getElementById('conceded').value,
+        SaveAccuracy: document.getElementById('saveAccuracy').value,
+        Dribbles: document.getElementById('dribbles').value,
+        DSR: document.getElementById('dsr').value,
+        Tackles: document.getElementById('tackles').value,
+        TSR: document.getElementById('tsr').value,
+        Offsides: document.getElementById('offsides').value,
+        Fouls: document.getElementById('fouls').value,
+        PossessionWon: document.getElementById('possessionWon').value,
+        PossessionLost: document.getElementById('possessionLost').value,
+        DistanceCovered: document.getElementById('distanceCovered').value,
+        Motm: document.getElementById('motm').value
+      };
+
+      const response = await fetch('https://script.google.com/macros/s/AKfycby37DMjsAvg6myjc-KzQ0EUFtMxZYMwaWuIvX-_fZEuAS3GWM0d_giLMa0qzydrE7T9rg/exec', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: 'data=' + encodeURIComponent(data)
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
       });
+
       const result = await response.text();
       alert(result);
     }
   </script>
 </head>
 <body>
-  <h1>Data Input Form</h1>
+  <h1>Player Statistics Input Form</h1>
   <form onsubmit="event.preventDefault(); sendData();">
-    <label for="data">Enter Data:</label>
-    <input type="text" id="data" name="data" required>
+    <label for="players">Players:</label>
+    <input type="text" id="players" name="players" required><br>
+
+    <label for="played">Played:</label>
+    <input type="number" id="played" name="played" required><br>
+
+    <label for="goals">Goals:</label>
+    <input type="number" id="goals" name="goals" required><br>
+
+    <label for="assists">Assists:</label>
+    <input type="number" id="assists" name="assists" required><br>
+
+    <label for="shots">Shots:</label>
+    <input type="number" id="shots" name="shots" required><br>
+
+    <label for="shotAccuracy">Shot Accuracy (%):</label>
+    <input type="number" step="0.1" id="shotAccuracy" name="shotAccuracy" required><br>
+
+    <label for="passes">Passes:</label>
+    <input type="number" id="passes" name="passes" required><br>
+
+    <label for="passAttempts">Pass Attempts:</label>
+    <input type="number" id="passAttempts" name="passAttempts" required><br>
+
+    <label for="passAccuracy">Pass Accuracy (%):</label>
+    <input type="number" step="0.1" id="passAccuracy" name="passAccuracy" required><br>
+
+    <label for="saves">Saves:</label>
+    <input type="number" id="saves" name="saves" required><br>
+
+    <label for="conceded">Conceded:</label>
+    <input type="number" id="conceded" name="conceded" required><br>
+
+    <label for="saveAccuracy">Save Accuracy (%):</label>
+    <input type="number" step="0.1" id="saveAccuracy" name="saveAccuracy" required><br>
+
+    <label for="dribbles">Dribbles:</label>
+    <input type="number" id="dribbles" name="dribbles" required><br>
+
+    <label for="dsr">DSR (%):</label>
+    <input type="number" step="0.1" id="dsr" name="dsr" required><br>
+
+    <label for="tackles">Tackles:</label>
+    <input type="number" id="tackles" name="tackles" required><br>
+
+    <label for="tsr">TSR (%):</label>
+    <input type="number" step="0.1" id="tsr" name="tsr" required><br>
+
+    <label for="offsides">Offsides:</label>
+    <input type="number" id="offsides" name="offsides" required><br>
+
+    <label for="fouls">Fouls:</label>
+    <input type="number" id="fouls" name="fouls" required><br>
+
+    <label for="possessionWon">Possession Won:</label>
+    <input type="number" id="possessionWon" name="possessionWon" required><br>
+
+    <label for="possessionLost">Possession Lost:</label>
+    <input type="number" id="possessionLost" name="possessionLost" required><br>
+
+    <label for="distanceCovered">Distance Covered (Km):</label>
+    <input type="number" step="0.1" id="distanceCovered" name="distanceCovered" required><br>
+
+    <label for="motm">Man of the Match (Motm):</label>
+    <input type="text" id="motm" name="motm" required><br>
+
     <button type="submit">Submit</button>
   </form>
 </body>
